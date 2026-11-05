@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Halaman Guru - Sistem Informasi Nilai Siswa</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Seluruh halaman disembunyikan sampai pengecekan login selesai (lihat auth.js) -->
+  <div id="app" hidden>
+
+    <header class="app-header">
+      <div class="header-info">
+        <h1>Nilai Siswa</h1>
+        <p class="header-line"><strong id="header-name"></strong> (Guru)</p>
+        <p class="header-line" id="header-semester"></p>
+      </div>
+      <button type="button" class="btn btn-light" id="logout-btn">Keluar</button>
+    </header>
+
+    <main class="container">
+
+      <!-- Tampilan: memuat -->
+      <p class="state-box" data-view="loading" role="status">Memuat data...</p>
+
+      <!-- Tampilan: error -->
+      <div class="state-box state-error" data-view="error" role="alert" hidden>
+        <p id="error-text">Terjadi kesalahan.</p>
+        <button type="button" class="btn btn-primary" id="retry-btn">Coba lagi</button>
+      </div>
+
+      <!-- Tampilan: kosong -->
+      <p class="state-box" data-view="empty" hidden>Anda belum ditugaskan mengajar mata pelajaran apa pun.</p>
+
+      <!-- Tampilan: isi -->
+      <div data-view="content" hidden>
+
+        <!-- Pilih mapel dan kelas -->
+        <section class="filters" aria-label="Pilih mata pelajaran dan kelas">
+          <div class="field">
+            <label for="subject-select">Mata Pelajaran</label>
+            <select id="subject-select"></select>
+          </div>
+          <div class="field">
+            <label for="class-select">Kelas</label>
+            <select id="class-select"></select>
+          </div>
+        </section>
+
+        <p class="muted" id="grade-info"></p>
+
+        <p class="state-box" id="table-status" role="status" hidden></p>
+
+        <!-- Tabel nilai: di layar kecil berubah jadi kartu (lihat style.css) -->
+        <div id="table-wrap" hidden>
+          <table class="grade-table">
+            <caption class="visually-hidden" id="table-caption"></caption>
+            <thead></thead>
+            <tbody id="score-body"></tbody>
+          </table>
+        </div>
+
+        <!-- Tombol simpan -->
+        <div class="actions">
+          <button type="button" class="btn btn-primary" id="save-btn" disabled>Simpan Perubahan</button>
+          <p class="save-message" id="save-message" role="status"></p>
+        </div>
+
+        <!-- Ringkasan kelas -->
+        <section class="summary" aria-labelledby="summary-title">
+          <h2 id="summary-title">Ringkasan Kelas</h2>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <span class="summary-label">Rata-rata kelas</span>
+              <span class="summary-value" id="sum-average">—</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Tertinggi</span>
+              <span class="summary-value" id="sum-max">—</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Terendah</span>
+              <span class="summary-value" id="sum-min">—</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Belum tuntas</span>
+              <span class="summary-value" id="sum-fail">—</span>
+            </div>
+          </div>
+          <p class="muted" id="sum-note"></p>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/guru.js"></script>
+</body>
+</html>

@@ -1,0 +1,516 @@
+/* ============================================================
+   style.css - Satu file CSS untuk semua halaman
+   Mobile-first: gaya dasar untuk HP, lalu @media (min-width) untuk layar lebih besar.
+   Satu warna aksen: biru (--accent).
+   ============================================================ */
+
+:root {
+  --accent: #1d4ed8;          /* warna aksen */
+  --accent-dark: #1e3a8a;
+  --text: #0f172a;
+  --muted: #475569;
+  --border: #cbd5e1;
+  --bg: #f1f5f9;
+  --white: #ffffff;
+  --danger: #b91c1c;
+  --danger-bg: #fee2e2;
+  --success: #166534;
+  --success-bg: #dcfce7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Atribut hidden harus selalu menyembunyikan elemen */
+[hidden] {
+  display: none !important;
+}
+
+h1, h2 {
+  margin: 0 0 0.5rem;
+  line-height: 1.25;
+}
+
+h1 { font-size: 1.35rem; }
+h2 { font-size: 1.1rem; }
+
+p {
+  margin: 0 0 0.5rem;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Fokus terlihat jelas untuk pengguna keyboard */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Teks yang hanya dibaca screen reader (tidak terlihat) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== Tombol ===== */
+.btn {
+  display: inline-block;
+  min-height: 44px;                 /* nyaman disentuh */
+  padding: 0.5rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  color: var(--white);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-dark);
+}
+
+.btn-light {
+  color: var(--accent-dark);
+  background: var(--white);
+  border-color: var(--white);
+}
+
+.btn-small {
+  min-height: 44px;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn:disabled {
+  color: var(--muted);
+  background: #e2e8f0;
+  border-color: #e2e8f0;
+  cursor: not-allowed;
+}
+
+/* ===== Form ===== */
+.field {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid #64748b;
+  border-radius: 6px;
+}
+
+input[aria-invalid="true"] {
+  border: 2px solid var(--danger);
+  background: #fff5f5;
+}
+
+.field-error,
+.cell-error {
+  margin: 0.25rem 0 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--danger);
+}
+
+.alert {
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+}
+
+.alert-error {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger);
+}
+
+/* ===== Halaman login ===== */
+.login-page {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.demo-box {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.demo-label {
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+details summary {
+  min-height: 44px;
+  padding: 0.6rem 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.chip {
+  min-height: 44px;
+  padding: 0.25rem 0.8rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--accent-dark);
+  background: #eff6ff;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  background: #dbeafe;
+}
+
+.reset-box {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== Header halaman guru / siswa ===== */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--white);
+  background: var(--accent);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.header-line {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.app-header :focus-visible {
+  outline-color: var(--white);
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* ===== Kotak status: memuat / kosong / error ===== */
+.state-box {
+  padding: 1.25rem;
+  text-align: center;
+  color: var(--muted);
+  background: var(--white);
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+}
+
+.state-error {
+  color: var(--danger);
+  background: var(--danger-bg);
+  border: 1px solid var(--danger);
+}
+
+/* ===== Pilihan mapel & kelas ===== */
+.filters {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 1rem;
+}
+
+/* ===== Tabel nilai (dasar = tampilan kartu untuk HP) ===== */
+.grade-table {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.grade-table thead {
+  position: absolute;               /* judul kolom disembunyikan di HP */
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.grade-table tr {
+  display: block;
+  margin-bottom: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.grade-table td {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.25rem 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.grade-table td:last-child {
+  border-bottom: 0;
+}
+
+/* Label kolom diambil dari atribut data-label (tanpa JavaScript) */
+.grade-table td::before {
+  content: attr(data-label);
+  flex: 0 0 40%;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.cell-name {
+  font-weight: 600;
+}
+
+.cell-input .score-input {
+  flex: 1 1 50%;
+  width: auto;
+  min-width: 0;
+}
+
+.cell-input .cell-error {
+  flex: 1 0 100%;
+  text-align: right;
+}
+
+.cell-final {
+  font-weight: 700;
+}
+
+/* ===== Status (selalu berupa teks, warna hanya tambahan) ===== */
+.status {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+.status-pass {
+  color: var(--success);
+  background: var(--success-bg);
+}
+
+.status-fail {
+  color: var(--danger);
+  background: var(--danger-bg);
+}
+
+.status-incomplete {
+  color: var(--muted);
+  background: #e2e8f0;
+}
+
+/* ===== Tombol simpan ===== */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.save-message {
+  margin: 0;
+  min-height: 1.5rem;
+  font-weight: 600;
+}
+
+.save-success { color: var(--success); }
+.save-warning { color: var(--danger); }
+
+/* ===== Ringkasan ===== */
+.summary {
+  padding: 1rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.summary-item {
+  padding: 0.6rem;
+  background: var(--bg);
+  border-radius: 6px;
+}
+
+.summary-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.summary-value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+/* ===== Tablet dan laptop (lebar 640px ke atas) ===== */
+@media (min-width: 640px) {
+  h1 { font-size: 1.6rem; }
+
+  .app-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .container {
+    padding: 1.5rem;
+  }
+
+  .filters {
+    grid-template-columns: 1fr 1fr;
+    max-width: 600px;
+  }
+
+  /* Kembali menjadi tabel biasa */
+  .grade-table {
+    display: table;
+    border-collapse: collapse;
+    background: var(--white);
+    border: 1px solid var(--border);
+  }
+
+  .grade-table thead {
+    position: static;
+    display: table-header-group;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+  }
+
+  .grade-table tbody {
+    display: table-row-group;
+  }
+
+  .grade-table tr {
+    display: table-row;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .grade-table th,
+  .grade-table td {
+    display: table-cell;
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .grade-table th {
+    color: var(--white);
+    background: var(--accent-dark);
+  }
+
+  .grade-table td::before {
+    display: none;
+  }
+
+  .cell-input .score-input {
+    width: 6rem;
+  }
+
+  .cell-input .cell-error {
+    max-width: 9rem;
+  }
+
+  .actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .summary-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .summary-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 500px;
+  }
+}
