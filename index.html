@@ -1,68 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Masuk - Sistem Informasi Nilai Siswa</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="login-page">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - SMA Kebangsaan</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body id="login-body">
+    <div id="login-page-wrapper">
+      <h1>SMA Kebangsaan</h1>
 
-  <main class="login-box">
-    <h1>Sistem Informasi Nilai Siswa</h1>
-    <p class="muted" id="semester-text"></p>
+      <!-- 1. Menambahkan pesan error global yang tersembunyi -->
+      <div
+        id="login-error"
+        style="color: #ffcccc; font-size: 0.9rem; margin-bottom: 1rem"
+        hidden
+      ></div>
 
-    <!-- Form login -->
-    <form id="login-form" novalidate>
-      <div class="field">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" autocomplete="username"
-               autocapitalize="none" aria-describedby="username-error">
-        <p class="field-error" id="username-error" hidden></p>
-      </div>
+      <!-- 2. Mengubah ID form agar sesuai dengan auth.js -->
+      <form id="login-form">
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required />
+          <!-- Menambahkan ID untuk pesan error username -->
+          <div
+            id="username-error"
+            style="
+              color: #ffcccc;
+              font-size: 0.85rem;
+              margin-top: 0.25rem;
+              text-align: left;
+            "
+            hidden
+          ></div>
+        </div>
 
-      <div class="field">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" autocomplete="current-password"
-               aria-describedby="password-error">
-        <p class="field-error" id="password-error" hidden></p>
-      </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+          <!-- Menambahkan ID untuk pesan error password -->
+          <div
+            id="password-error"
+            style="
+              color: #ffcccc;
+              font-size: 0.85rem;
+              margin-top: 0.25rem;
+              text-align: left;
+            "
+            hidden
+          ></div>
+        </div>
 
-      <p class="alert alert-error" id="login-error" role="alert" hidden></p>
+        <!-- 3. Menambahkan ID login-btn -->
+        <button type="submit" id="login-btn" class="btn btn-primary">
+          Masuk
+        </button>
+      </form>
 
-      <button type="submit" class="btn btn-primary btn-block" id="login-btn">Masuk</button>
-    </form>
-
-    <!-- Akun demo -->
-    <section class="demo-box" id="demo-accounts" aria-labelledby="demo-title">
-      <h2 id="demo-title">Akun demo</h2>
-      <p class="muted">Klik salah satu akun untuk mengisi form.</p>
-
-      <p class="demo-label">Guru (password: guru123)</p>
-      <div class="chip-list" id="demo-teachers"></div>
-
-      <details>
-        <summary>Siswa (password: siswa123)</summary>
-        <div class="chip-list" id="demo-students"></div>
-      </details>
-    </section>
-
-    <!-- Reset data -->
-    <div class="reset-box">
-      <button type="button" class="btn btn-small" id="reset-btn">Reset data demo</button>
-      <p class="muted" id="reset-message" role="status" hidden></p>
+      <a href="#" class="forgot-password-link" onclick="openModal(event)"
+        >Lupa sandi?</a
+      >
     </div>
-  </main>
 
-  <!-- Urutan script penting: config -> data -> utils -> api -> auth -->
-  <script src="js/config.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/api.js"></script>
-  <script src="js/auth.js"></script>
-  <script>
-    document.getElementById("semester-text").textContent = CONFIG.SEMESTER_LABEL;
-    Auth.initLoginPage();
-  </script>
-</body>
+    <div
+      id="forgotPasswordModal"
+      class="modal-overlay"
+      onclick="closeModalOutside(event)"
+    >
+      <div class="modal-content">
+        <h2>Lupa Kata Sandi?</h2>
+        <p>
+          Silakan hubungi Admin Tata Usaha atau Wali Kelas Anda untuk meminta
+          reset kata sandi.
+        </p>
+        <a
+          href="https://wa.me/6281234567890"
+          target="_blank"
+          class="btn btn-whatsapp"
+          >Hubungi Admin via WhatsApp</a
+        >
+        <button
+          type="button"
+          class="btn btn-light btn-block"
+          onclick="closeModal()"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+
+    <!-- 4. WADAH TERSEMBUNYI (PENTING) -->
+    <!-- Elemen ini disembunyikan agar desain tetap bersih, tapi wajib ada agar auth.js tidak error saat mencari ID ini -->
+    <div style="display: none">
+      <div id="demo-accounts"></div>
+      <div id="demo-teachers"></div>
+      <div id="demo-students"></div>
+      <button id="reset-btn"></button>
+      <div id="reset-message"></div>
+    </div>
+
+    <script>
+      function openModal(e) {
+        e.preventDefault();
+        document.getElementById("forgotPasswordModal").style.display = "flex";
+      }
+      function closeModal() {
+        document.getElementById("forgotPasswordModal").style.display = "none";
+      }
+      function closeModalOutside(e) {
+        if (e.target.id === "forgotPasswordModal") {
+          closeModal();
+        }
+      }
+    </script>
+
+    <!-- 5. MEMANGGIL JAVASCRIPT -->
+    <!-- Masukkan file pendukung sebelum auth.js (sesuaikan dengan yang Anda punya) -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+      // Memulai fungsi form login dari auth.js setelah halaman dimuat
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof Auth !== "undefined" && Auth.initLoginPage) {
+          Auth.initLoginPage();
+        }
+      });
+    </script>
+  </body>
 </html>

@@ -5,7 +5,7 @@
    ============================================================ */
 
 :root {
-  --accent: #1d4ed8;          /* warna aksen */
+  --accent: #1d4ed8; /* warna aksen */
   --accent-dark: #1e3a8a;
   --text: #0f172a;
   --muted: #475569;
@@ -24,7 +24,13 @@
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   color: var(--text);
@@ -36,13 +42,18 @@ body {
   display: none !important;
 }
 
-h1, h2 {
+h1,
+h2 {
   margin: 0 0 0.5rem;
   line-height: 1.25;
 }
 
-h1 { font-size: 1.35rem; }
-h2 { font-size: 1.1rem; }
+h1 {
+  font-size: 1.35rem;
+}
+h2 {
+  font-size: 1.1rem;
+}
 
 p {
   margin: 0 0 0.5rem;
@@ -75,7 +86,7 @@ p {
 /* ===== Tombol ===== */
 .btn {
   display: inline-block;
-  min-height: 44px;                 /* nyaman disentuh */
+  min-height: 44px; /* nyaman disentuh */
   padding: 0.5rem 1.1rem;
   font: inherit;
   font-weight: 600;
@@ -294,7 +305,7 @@ details summary {
 }
 
 .grade-table thead {
-  position: absolute;               /* judul kolom disembunyikan di HP */
+  position: absolute; /* judul kolom disembunyikan di HP */
   width: 1px;
   height: 1px;
   overflow: hidden;
@@ -389,8 +400,12 @@ details summary {
   font-weight: 600;
 }
 
-.save-success { color: var(--success); }
-.save-warning { color: var(--danger); }
+.save-success {
+  color: var(--success);
+}
+.save-warning {
+  color: var(--danger);
+}
 
 /* ===== Ringkasan ===== */
 .summary {
@@ -429,7 +444,9 @@ details summary {
 
 /* ===== Tablet dan laptop (lebar 640px ke atas) ===== */
 @media (min-width: 640px) {
-  h1 { font-size: 1.6rem; }
+  h1 {
+    font-size: 1.6rem;
+  }
 
   .app-header {
     padding: 1rem 1.5rem;
@@ -513,4 +530,173 @@ details summary {
     grid-template-columns: repeat(2, 1fr);
     max-width: 500px;
   }
+}
+
+/* ============================================================
+   Tampilan Khusus Halaman Login (#login-page-wrapper)
+   Clean, Modern, Glassmorphism & High-Contrast
+   ============================================================ */
+
+/* ============================================================
+   REVISI HALAMAN LOGIN (CLEAN & MODERN)
+   ============================================================ */
+
+/* 1. Atur Body Khusus Login agar background gradien penuh */
+/* 1. Atur Body Khusus Login dengan Gambar Background */
+body#login-body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* Memanggil gambar background_smk_kebangsaan.jpg dari luar folder css */
+  background-image: url('../background_smk_kebangsaan.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  overflow: hidden;
+}
+
+/* 2. Wrapper Form Login (Card Glassmorphism) */
+#login-page-wrapper {
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.08); /* Semi-transparan */
+  backdrop-filter: blur(12px); /* Efek blur kaca */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Garis batas tipis putih */
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  color: var(--white); /* Ubah teks utama jadi putih agar kontras */
+}
+
+/* 3. Penyesuaian Logo di dalam Card */
+#login-page-wrapper .login-logo {
+  width: 80px;
+  height: auto;
+  margin: 0 auto 1.25rem;
+  display: block;
+}
+
+/* 4. Judul Login */
+#login-page-wrapper h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--white);
+  letter-spacing: 0.5px;
+}
+
+/* 5. Penyesuaian Input Form */
+#login-page-wrapper .field {
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+
+#login-page-wrapper label {
+  color: rgba(255, 255, 255, 0.9); /* Label putih sedikit transparan */
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+#login-page-wrapper input[type="text"],
+#login-page-wrapper input[type="password"] {
+  background: rgba(0, 0, 0, 0.2); /* Input box gelap transparan */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white); /* Teks ketikan putih */
+  transition: all 0.3s ease;
+}
+
+#login-page-wrapper input:focus {
+  outline: none;
+  border-color: #3b82f6; /* Biru terang saat fokus */
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* 6. Tombol Masuk */
+#login-page-wrapper .btn-primary {
+  width: 100%;
+  margin-top: 0.5rem;
+  background: #3b82f6;
+  border: none;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  padding: 0.75rem;
+  transition: background 0.3s ease;
+}
+
+#login-page-wrapper .btn-primary:hover {
+  background: #2563eb;
+}
+
+/* 7. Link Lupa Sandi */
+#login-page-wrapper .forgot-password-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+#login-page-wrapper .forgot-password-link:hover {
+  color: var(--white);
+  text-decoration: underline;
+}
+
+/* 8. Pop-up (Modal) Lupa Sandi */
+.modal-overlay {
+  display: none; /* Sembunyikan default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  color: var(--text);
+}
+
+.modal-content h2 {
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  border: none;
+  display: block;
+  width: 100%;
+  margin-bottom: 0.75rem;
+  text-decoration: none;
+  padding: 0.6rem;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+.btn-whatsapp:hover {
+  background: #128C7E;
 }
